@@ -1,0 +1,11 @@
+.idea/
+**/.idea/
+*.iml
+
+target/
+*.log
+.env
+
+mongo-data/
+mysql-data/
+postgres-data/
