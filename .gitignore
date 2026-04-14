@@ -9,3 +9,4 @@ target/
 mongo-data/
 mysql-data/
 postgres-data/
+*.mp4

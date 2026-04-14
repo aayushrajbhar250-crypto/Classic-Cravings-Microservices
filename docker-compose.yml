@@ -11,7 +11,8 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: user123
-      POSTGRES_DB: restaurantdb
+      POSTGRES_DB: restaurant_db
+      TZ: Asia/Calcutta
     ports:
       - "5432:5432"
     volumes:
