@@ -7,6 +7,7 @@ import com.classic.cravings.food.entities.FoodCategory;
 import com.classic.cravings.food.entities.FoodItem;
 import com.classic.cravings.food.repository.FoodCategoryRepo;
 import com.classic.cravings.food.repository.FoodItemRepo;
+import com.classic.cravings.food.service.external.RestWebClientService;
 import com.classic.cravings.food.service.external.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,9 @@ public class FoodItemService {
     @Autowired
     private RestaurantService  restaurantService;
 
+    @Autowired
+    private RestWebClientService restWebClientService;
+
 
 
     public List<FoodItemDTO> getAllFoodItems() {
@@ -50,6 +54,7 @@ public class FoodItemService {
         //calling restaurant service to get restaurant by id
         RestaurantDto restaurantDto = restaurantService.getById ( foodItem.getRestaurantId () );
 
+//        RestaurantDto restaurantDto = restWebClientService.getById ( foodItem.getRestaurantId () );
         FoodItemDTO foodItemDTO = convertToDTO ( foodItem );
          foodItemDTO.setRestaurant (  restaurantDto );
          return foodItemDTO;
