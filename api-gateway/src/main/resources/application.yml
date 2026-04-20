@@ -34,4 +34,12 @@ info:
     description: "This is Api Gateway for common entry Point"
     version: "1.0V"
 
+resilience4j:
+  circuitBreaker:
+    configs:
+      default:
+        sliding-window-size:
+          permitted-number-of-calls-in-half-open-state: 2
+          failure-rate-threshold: 50
+          wait-duration-in-open-state: 10000
 

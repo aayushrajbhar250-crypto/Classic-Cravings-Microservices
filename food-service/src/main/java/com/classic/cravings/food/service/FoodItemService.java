@@ -52,9 +52,9 @@ public class FoodItemService {
 //        RestaurantDto restaurantDto = restTemplate.getForObject ( restaurantServiceUrl, RestaurantDto.class );
 
         //calling restaurant service to get restaurant by id
-        RestaurantDto restaurantDto = restaurantService.getById ( foodItem.getRestaurantId () );
+//        RestaurantDto restaurantDto = restaurantService.getById ( foodItem.getRestaurantId () );
 
-//        RestaurantDto restaurantDto = restWebClientService.getById ( foodItem.getRestaurantId () );
+        RestaurantDto restaurantDto = restWebClientService.getById ( foodItem.getRestaurantId () );
         FoodItemDTO foodItemDTO = convertToDTO ( foodItem );
          foodItemDTO.setRestaurant (  restaurantDto );
          return foodItemDTO;

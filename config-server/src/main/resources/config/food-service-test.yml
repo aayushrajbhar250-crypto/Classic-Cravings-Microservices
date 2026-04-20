@@ -1,0 +1,8 @@
+server:
+  port: 9099
+
+info:
+  app:
+    name: "Food Service"
+    description: "This is Food Service. You are Testing right the service"
+    version: "1.0 Under Testing"

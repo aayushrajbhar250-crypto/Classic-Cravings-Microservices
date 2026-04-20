@@ -1,12 +1,13 @@
 package com.classic.cravings.food.service.external;
 
+import com.classic.cravings.food.config.AppConstants;
 import com.classic.cravings.food.dto.RestaurantDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "restaurant-service",url = "http://localhost:8082")
+@FeignClient(name = AppConstants.RESTAURANT_SERVICE_NAME)
 public interface RestaurantService {
 
     //get restaurants with given id

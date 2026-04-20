@@ -1,24 +1,48 @@
-server:
-  port: 9092
-
 spring:
   application:
-    name: FOOD-SERVICE
+    name: "FOOD-SERVICE"
+  profiles:
+    active: dev
+#  application:
+#    name: FOOD-SERVICE
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/microservices_db
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/microservices_db
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+  config:
+    import: "configserver:http://localhost:9096/"
 
 # eureka configuration
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  rabbitMQ:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#
+#  instance:
+#    hostname: localhost
+#    prefer-ip-address: true
+#
+#
+#management:
+#  endpoint:
+#    web:
+#      exposure:
+#        include: "*"
+#
+#  info:
+#    env:
+#      enabled: true
