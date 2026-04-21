@@ -2,6 +2,7 @@ package com.classic.cravings.restaurant.controller;
 
 import com.classic.cravings.restaurant.dto.RestaurantDto;
 import com.classic.cravings.restaurant.service.RestaurantService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +34,15 @@ public class RestaurantController {
     }
 
     // get restaurant by id
+    int count =0;
     @GetMapping("/{id}")
     public ResponseEntity<RestaurantDto> getById(@PathVariable String id) {
         RestaurantDto restaurantDto = restaurantService.getById( id );
+        count++;
+        if (count <= 3){
+            System.out.println ("retrying" +count);
+            throw new RuntimeException ("service down");
+        }
         return new ResponseEntity<>( restaurantDto, HttpStatus.OK );
     }
 
@@ -54,9 +61,14 @@ public class RestaurantController {
     }
 
     //get all restaurant
+    @RateLimiter ( name = "get-all-restaurant-rate-limiter" ,fallbackMethod = "getAllFallBack")
     @GetMapping
     public ResponseEntity<List<RestaurantDto>> getAll() {
         List<RestaurantDto> restaurants = restaurantService.getAll();
         return new ResponseEntity<>( restaurants, HttpStatus.OK );
+    }
+    public ResponseEntity<List<RestaurantDto>> getAllFallBack(Throwable throwable) {
+        System.out.println (throwable.getMessage ());
+        return ResponseEntity.ok().body( null );
     }
 }

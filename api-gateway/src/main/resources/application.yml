@@ -8,6 +8,17 @@ spring:
         locator:
           enabled: false
 
+      httpclient:
+        response-timeout: 5s
+        connect-timeout: 1000
+
+  data:
+    redis:
+      host:
+        port: 6379
+#        username: guest
+#        password: guest
+
 
 eureka:
   client:

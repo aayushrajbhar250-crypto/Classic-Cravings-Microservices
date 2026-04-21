@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: test
   application:
     name: FOOD-SERVICE
 
@@ -28,7 +26,7 @@ eureka:
 
 
 management:
-  endpoint:
+  endpoints:
     web:
       exposure:
         include: "*"

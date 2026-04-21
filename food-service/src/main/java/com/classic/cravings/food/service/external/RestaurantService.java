@@ -2,12 +2,13 @@ package com.classic.cravings.food.service.external;
 
 import com.classic.cravings.food.config.AppConstants;
 import com.classic.cravings.food.dto.RestaurantDto;
+import com.classic.cravings.food.service.external.fallback.RestaurantServiceFallBack;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = AppConstants.RESTAURANT_SERVICE_NAME)
+@FeignClient(name = AppConstants.RESTAURANT_SERVICE_NAME,fallback = RestaurantServiceFallBack.class)
 public interface RestaurantService {
 
     //get restaurants with given id
