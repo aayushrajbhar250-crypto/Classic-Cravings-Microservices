@@ -12,10 +12,22 @@ spring:
         response-timeout: 5s
         connect-timeout: 1000
 
+      routes:
+        - id: restaurant-service
+          uri: lb://RESTAURANT-SERVICE
+          predicates:
+            - Path=/restaurant/**
+          filters:
+            - StripPrefix=1
   data:
     redis:
       host:
         port: 6379
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://127.0.0.1:8080/realms/classic-cravings/protocol/openid-connect/certs"
 #        username: guest
 #        password: guest
 
