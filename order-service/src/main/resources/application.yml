@@ -11,11 +11,11 @@ spring:
           destination: order.event
           content-type: application/json
           group: ${spring.application.name}
-  RabbitMQ:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+      Kafka:
+        binder:
+          brokers:
+            - localhost:9000
+
 eureka:
   client:
     service-url:
